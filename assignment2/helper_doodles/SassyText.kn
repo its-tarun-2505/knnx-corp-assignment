@@ -1,0 +1,30 @@
+Doodle ReverseText(text) {
+    Let reversed = Reverse(text);
+    Return reversed;
+}
+
+Doodle WordCount(text) {
+    Let count = Words(text).Length();
+
+    Return "Word Count: " + count + ". Wow, someone came prepared today.";
+}
+
+Doodle MakeSarcastic(text) {
+    Let result = "";
+    Let toggle = true;
+
+    For each char in text {
+        If toggle {
+            result = result + Upper(char);
+        } Else {
+            result = result + Lower(char);
+        }
+        toggle = !toggle;
+    }
+
+    Return result;  // light sarcasm effect
+}
+
+Doodle Shout(text) {
+    Return Upper(text) + "!!! Calm down, drama queen.";
+}

@@ -1,0 +1,46 @@
+Doodle GetScoreBoost(difficulty) {
+    If (difficulty == "Easy") {
+        Return 5;
+    }
+    If (difficulty == "Medium") {
+        Return 10;
+    }
+    If (difficulty == "Hard") {
+        Return 15;
+    }
+
+    Return 0; // Just in case someone invents "Ultra Hard"
+}
+
+Doodle GetPenalty(difficulty) {
+    If (difficulty == "Easy") {
+        Return -2;
+    }
+    If (difficulty == "Medium") {
+        Return -5;
+    }
+    If (difficulty == "Hard") {
+        Return -7;
+    }
+
+    Return 0; // Chaos avoided
+}
+
+Doodle RandomIndex(max) {
+    // Safeguard for negative or 0 max
+    If (max <= 0) {
+        Return 0;
+    }
+
+    Let index = Random(0, max - 1);
+    Return index;
+}
+
+Doodle ApplyBonus(score, streak) {
+    // Small extra reward for consistent correct answers
+    If (streak >= 3) {
+        Return score + 5;
+    }
+
+    Return score;
+}
