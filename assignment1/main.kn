@@ -1,0 +1,12 @@
+// Just Saying: This is your main entry point for KN-Lang Adventure.
+
+// Just Saying: Import all squads
+Import "squads/Player.kn";
+Import "squads/Room.kn";
+Import "squads/GameManager.kn";
+
+// Just Saying: Import room definitions
+Import "data/rooms.kn";
+
+// Just Saying: Start the game
+GameManager.startGame();
