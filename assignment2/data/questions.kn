@@ -1,0 +1,72 @@
+// Just Saying: This file stores all questions for Quiz Master
+
+// Just Saying: SCIENCE QUESTIONS
+
+Quark q1 = new Question();
+q1.category = "Science";
+q1.difficulty = "Easy";
+q1.questionText = "What is the chemical symbol for water?";
+q1.correctAnswer = "H2O";
+
+Quark q2 = new Question();
+q2.category = "Science";
+q2.difficulty = "Medium";
+q2.questionText = "What planet is known as the Red Planet?";
+q2.correctAnswer = "Mars";
+
+Quark q3 = new Question();
+q3.category = "Science";
+q3.difficulty = "Hard";
+q3.questionText = "What gas makes up most of Earth's atmosphere?";
+q3.correctAnswer = "Nitrogen";
+
+
+// Just Saying: HISTORY QUESTIONS
+
+Quark q4 = new Question();
+q4.category = "History";
+q4.difficulty = "Easy";
+q4.questionText = "Who was the first President of the USA?";
+q4.correctAnswer = "George Washington";
+
+Quark q5 = new Question();
+q5.category = "History";
+q5.difficulty = "Medium";
+q5.questionText = "In which year did World War II end?";
+q5.correctAnswer = "1945";
+
+Quark q6 = new Question();
+q6.category = "History";
+q6.difficulty = "Hard";
+q6.questionText = "Which empire was ruled by Mansa Musa?";
+q6.correctAnswer = "Mali Empire";
+
+
+// Just Saying: FUN FACTS QUESTIONS
+
+Quark q7 = new Question();
+q7.category = "Fun Facts";
+q7.difficulty = "Easy";
+q7.questionText = "Which animal is known as the 'King of the Jungle'?";
+q7.correctAnswer = "Lion";
+
+Quark q8 = new Question();
+q8.category = "Fun Facts";
+q8.difficulty = "Medium";
+q8.questionText = "What is the tallest mountain in the world?";
+q8.correctAnswer = "Mount Everest";
+
+Quark q9 = new Question();
+q9.category = "Fun Facts";
+q9.difficulty = "Hard";
+q9.questionText = "What is the rarest blood type in humans?";
+q9.correctAnswer = "AB Negative";
+
+
+// Just Saying: EXPORT QUESTIONS
+
+Quark QuestionList = [
+    q1, q2, q3,
+    q4, q5, q6,
+    q7, q8, q9
+];
