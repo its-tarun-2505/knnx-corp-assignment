@@ -1,0 +1,23 @@
+Squad Question {
+
+    // Just Saying: Quarks (Properties) 
+    Quark category = "";
+    Quark difficulty = "";
+    Quark questionText = "";
+    Quark correctAnswer = "";
+
+    // Just Saying: Doodle: showQuestion 
+    Doodle showQuestion() {
+        Print("Category: " + category);
+        Print("Difficulty: " + difficulty);
+        Print("Q: " + questionText);
+    }
+
+    // Just Saying: Doodle: checkAnswer 
+    Doodle checkAnswer(playerInput) {
+        If (Lower(playerInput) == Lower(correctAnswer)) {
+            Return True;
+        }
+        Return False;
+    }
+}

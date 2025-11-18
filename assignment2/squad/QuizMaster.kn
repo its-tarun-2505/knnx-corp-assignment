@@ -1,0 +1,141 @@
+Squad QuizMaster {
+
+    // Just Saying: Quarks (State)
+    Quark questions = [];       // Just Saying: list of all questions
+    Quark player = new Player();
+    Quark activeCategory = "";
+    Quark activeDifficulty = "";
+
+
+    // Just Saying: Doodle: start
+    Doodle start() {
+        Print("Welcome to QUIZ MASTER!");
+        Let pname = Input("Enter your name, oh wise one: ");
+        player.setName(pname);
+
+        chooseCategory();
+        chooseDifficulty();
+
+        Print("Let the quiz begin!");
+        runQuiz();
+        showFinalRank();
+    }
+
+
+    // Just Saying: Doodle: chooseCategory
+    Doodle chooseCategory() {
+        Print("Choose a Category:");
+        Print("1. Science");
+        Print("2. History");
+        Print("3. Fun Facts");
+
+        Let choice = Input("Your choice: ");
+
+        If (choice == "1") { activeCategory = "Science"; }
+        Else If (choice == "2") { activeCategory = "History"; }
+        Else If (choice == "3") { activeCategory = "Fun Facts"; }
+        Else {
+            Print("Interesting choice… but no. Try again.");
+            chooseCategory();
+        }
+
+        Print("You selected: " + activeCategory);
+    }
+
+
+    // Just Saying: Doodle: chooseDifficulty
+    Doodle chooseDifficulty() {
+        Print("Choose Difficulty:");
+        Print("Easy / Medium / Hard");
+
+        Let diff = Input("Your choice: ");
+        Let lower = Lower(diff);
+
+        If (lower == "easy") { activeDifficulty = "Easy"; }
+        Else If (lower == "medium") { activeDifficulty = "Medium"; }
+        Else If (lower == "hard") { activeDifficulty = "Hard"; }
+        Else {
+            Print("That is… not a difficulty. Try again.");
+            chooseDifficulty();
+        }
+
+        Print("Difficulty locked: " + activeDifficulty);
+    }
+
+
+    // Just Saying: Doodle: runQuiz
+    Doodle runQuiz() {
+
+        Let count = 0;
+
+        SpinCycle (count < 10) {
+            Let q = getRandomQuestion();
+
+            q.showQuestion();
+            Let ans = Input("Your answer: ");
+
+            Let correct = q.checkAnswer(ans);
+
+            If (correct) {
+                Let gain = player.applyCorrect(activeDifficulty);
+                commentOnAnswer(True);
+                Print("You gained +" + gain);
+            } Else {
+                Let loss = player.applyWrong(activeDifficulty);
+                commentOnAnswer(False);
+                Print("You lost " + loss);
+            }
+
+            count = count + 1;
+        }
+    }
+
+
+    // Just Saying: Doodle: getRandomQuestion
+    Doodle getRandomQuestion() {
+
+        // Just Saying: Filter questions based on category + difficulty
+        Let filtered = [];
+
+        For each q in questions {
+            If (q.category == activeCategory AND q.difficulty == activeDifficulty) {
+                filtered.add(q);
+            }
+        }
+
+        If (filtered.Length() == 0) {
+            Print("ERROR: No questions match your settings.");
+            Return questions[0];
+        }
+
+        Let index = RandomIndex(filtered.Length());
+        Return filtered[index];
+    }
+
+
+    // Just Saying: Doodle: commentOnAnswer(isCorrect)
+    Doodle commentOnAnswer(isCorrect) {
+        If (isCorrect) {
+            Print("Well, someone paid attention in school!");
+        } Else {
+            Print("Close… if we graded on imagination.");
+        }
+    }
+
+
+    // Just Saying: Doodle: showFinalRank
+    Doodle showFinalRank() {
+
+        Let final = player.score;
+
+        Print("Final Score: " + final);
+
+        If (final >= 80) {
+            Print("Score Rank: Quiz Royalty has arrived!");
+        } Else If (final >= 50) {
+            Print("Score Rank: Quiz Master in training.");
+        } Else {
+            Print("Score Rank: Better luck next time, genius.");
+        }
+    }
+}
