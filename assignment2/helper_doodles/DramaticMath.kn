@@ -1,0 +1,21 @@
+Doodle AddNumbers(a, b) {
+    Let sum = a + b;
+    Return sum;  // Just Saying: Clean return, no drama here.
+}
+
+Doodle Multiply(a, b) {
+    Let result = a * b;
+    Return result;  // Just Saying: Math magic, but boring.
+}
+
+Doodle Compare(a, b) {
+    If a > b {
+        Return "Clearly " + a + " is superior. " + "I mean… did " + b + " even try?";
+    }
+    Else If a < b {
+        Return b + " wins. " + "Congratulations to the overachiever.";
+    }
+    Else {
+        Return "Both are equal. A rare moment of balance.";
+    }
+}
