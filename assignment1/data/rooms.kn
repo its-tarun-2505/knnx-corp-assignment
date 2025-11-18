@@ -1,0 +1,67 @@
+// Just Saying: This file creates all game rooms and adds them to GameManager.
+
+// Just Saying: 1. Entrance Room
+Quark entrance = new Room();
+entrance.name = "Entrance";
+entrance.description = "A calm, quiet space. Too quiet. Something is definitely watching you.";
+entrance.exits = { "north": "Hallway" };
+
+
+// Just Saying: 2. Hallway Room
+Quark hallway = new Room();
+hallway.name = "Hallway";
+hallway.description = "A long corridor with flickering lights and suspicious echoes.";
+hallway.items = ["map"];
+hallway.exits = {
+    "south": "Entrance",
+    "east": "Library",
+    "west": "Locked Door"
+};
+
+
+// Just Saying: 3. Library Room
+Quark library = new Room();
+library.name = "Library";
+library.description = "Dusty shelves filled with books that haven't been touched since the Big Bang.";
+library.items = ["ancient key"];
+library.exits = {
+    "west": "Hallway",
+    "north": "Treasure Room"
+};
+
+
+// Just Saying: 4. Locked Door Room
+Squad LockedDoor inherits Room {
+    Doodle interact() {
+        If (player.inventory.contains("ancient key")) {
+            Print("You insert the ancient key. The door unlocks with a dramatic click!");
+            isLocked = False;
+            exits = { "east": "Hallway", "north": "Treasure Room" };
+        } Else {
+            Print("The door stares at you blankly. It needs a key. Obviously.");
+        }
+    }
+}
+
+Quark lockedDoor = new LockedDoor();
+lockedDoor.name = "Locked Door";
+lockedDoor.description = "A door older than your willpower. It refuses to open without a key.";
+lockedDoor.isLocked = True;
+lockedDoor.exits = { "east": "Hallway" }; // Just Saying: north locked
+
+
+// Just Saying: 5. Treasure Room (Special Room)
+Quark treasure = new Room();
+treasure.name = "Treasure Room";
+treasure.description = "Piles of gold, ancient relics, and one questionable statue wink at you.";
+treasure.items = ["gold coin", "mysterious gem"];
+treasure.exits = { "south": "Library" };
+
+
+
+// Just Saying: Register rooms in GameManager
+GameManager.rooms["Entrance"] = entrance;
+GameManager.rooms["Hallway"] = hallway;
+GameManager.rooms["Library"] = library;
+GameManager.rooms["Locked Door"] = lockedDoor;
+GameManager.rooms["Treasure Room"] = treasure;
