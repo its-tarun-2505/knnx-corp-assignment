@@ -1,0 +1,28 @@
+// Just Saying: The main entry to Quiz Master
+
+// Just Saying: Import Squads
+Import "squads/Player.kn";
+Import "squads/Question.kn";
+Import "squads/QuizMaster.kn";
+
+// Just Saying: Import Helper_doodles
+Import "helper_doodles/DramaticMath.kn";
+Import "helper_doodles/MathBoost.kn";
+Import "helper_doodles/SassyText.kn";
+
+// Just Saying: Import Data
+Import "data/questions.kn";
+
+
+// Just Saying: Create QuizMaster Instance
+Quark quizGame = new QuizMaster();
+
+
+// Just Saying: Load Questions into QuizMaster
+For each q in QuestionList {
+    quizGame.questions.add(q);
+}
+
+
+// Just Saying: Start the Game
+quizGame.start();
