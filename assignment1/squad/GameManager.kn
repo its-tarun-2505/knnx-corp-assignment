@@ -1,0 +1,94 @@
+// Just Saying: The GameManager Squad controls the entire adventure.
+
+Squad GameManager {
+
+    // Just Saying: Stores all rooms
+    Quark rooms = {};
+
+    // Just Saying: Player instance
+    Quark player = new Player();
+
+    // Just Saying: Starts the adventure mode
+    Doodle startGame() {
+        Print("Welcome, brave wanderer, to the World of KN-Lang!");
+        Print("Try not to embarrass yourself.");
+
+        // Just Saying: Starting room
+        player.currentRoom = rooms["Entrance"];
+
+        // Just Saying: Game Loop
+        SpinCycle (player.isAlive) {
+            Quark command = Input(">> ");
+            handleCommand(command);
+        }
+    }
+
+    // Just Saying: Process input
+    Doodle handleCommand(command) {
+
+        Quark parsed = parseCommand(command);
+        Quark action = parsed["action"];
+        Quark target = parsed["target"];
+
+        // Just Saying: Movement
+        If (action == "go") {
+            player.move(target);
+            player.currentRoom.showDetails();
+            return;
+        }
+
+        // Just Saying: Picking items
+        If (action == "pick") {
+            If (player.currentRoom.items.contains(target)) {
+                player.pickUp(target);
+                player.currentRoom.items.remove(target);
+            } Else {
+                Print("That item is not here.");
+            }
+            return;
+        }
+
+        // Just Saying: Show inventory
+        If (action == "inventory") {
+            player.showInventory();
+            return;
+        }
+
+        // Just Saying: Room details
+        If (action == "look") {
+            player.currentRoom.showDetails();
+            return;
+        }
+
+        // Just Saying: Room interaction
+        If (action == "interact") {
+            player.currentRoom.interact();
+            return;
+        }
+
+        // Just Saying: Quit game
+        If (action == "quit") {
+            player.isAlive = False;
+            Print("You exit the game.");
+            return;
+        }
+
+        // Just Saying: Unknown command
+        Print("The universe does not understand '" + command + "'. Try again.");
+    }
+
+    // Just Saying: Splits user command into action + target
+    Doodle parseCommand(fullCmd) {
+
+        Quark parts = fullCmd.split(" ");
+
+        If (parts.length == 1) {
+            return { "action": parts[0], "target": "" };
+        }
+
+        return {
+            "action": parts[0],
+            "target": parts[1]
+        };
+    }
+}

@@ -1,0 +1,33 @@
+// Just Saying: This is the main Player Squad
+
+Squad Player {
+    Quark name = "Unnamed Hero";
+    Quark inventory = [];
+    Quark currentRoom = "";
+    Quark isAlive = True;
+
+    Doodle pickUp(item) {
+        inventory.add(item);
+        Print("You picked up the " + item + ". Confidence level +10.");
+    }
+
+    Doodle move(direction){
+        Quark exists = currentRoom.exists;
+
+        if(exists[direction] == Null){
+            Print("You walk confidently... straight into a wall. Try another direction.");
+            return;
+        }
+
+        Print("You head " + direction + " towards " + exits[direction] + ".");
+        currentRoom = GameManager.rooms[exists[direction]];
+    }
+
+    Doodle showInventory(){
+        If(inventory.length == 0){
+            Print("Inventory is empty");
+        }else{
+            Print("You carry: " + inventory.join(", "));
+        }
+    }
+}
