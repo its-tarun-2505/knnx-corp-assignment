@@ -1,0 +1,44 @@
+Squad Player {
+    // Just Saying: Quarks (Properties)
+    Quark name = "Unknown Challenger";
+    Quark score = 0;
+    Quark streak = 0;   // Just Saying: bonus streak for multiple correct answers
+
+    // Just Saying: Doodle: setName
+    Doodle setName(newName) {
+        name = newName;
+    }
+
+    // Just Saying: Doodle: resetScore
+    Doodle resetScore() {
+        score = 0;
+        streak = 0;
+    }
+
+    // Just Saying: Doodle: applyCorrect(difficulty)
+    Doodle applyCorrect(difficulty) {
+        Let base = GetScoreBoost(difficulty);   
+        streak = streak + 1;
+
+        Let totalGain = ApplyBonus(base, streak);  
+        score = score + totalGain;
+
+        Return totalGain;
+    }
+
+    // Just Saying: Doodle: applyWrong(difficulty)
+    Doodle applyWrong(difficulty) {
+        Let penalty = GetPenalty(difficulty);   
+
+        streak = 0; // Just Saying: reset streak
+        score = score + penalty;
+
+        Return penalty;
+    }
+
+    // Just Saying: Doodle: showScore
+    Doodle showScore() {
+        Print("Current Score: " + score);
+        Print("Streak: " + streak);
+    }
+}
