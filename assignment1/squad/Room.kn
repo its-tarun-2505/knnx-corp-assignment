@@ -1,0 +1,23 @@
+// Just Saying: Room Squad defines room logic
+
+Squad Room {
+    Quark name;
+    Quark description;
+    Quark items = [];
+    Quark exits = {};
+    Quark isLocked = false;
+
+    Doodle showDetails() {
+        Print(">> You are in: " + name);
+        Print(description);
+        If (items.length > 0) {
+            Print("Items here: " + items.join(", "));
+        } Else {
+            Print("It's empty... suspiciously empty.");
+        }
+
+        Print("Exits: " + Object.keys(exits).join(", "));
+    };
+
+    Doodle interact(){};
+}
